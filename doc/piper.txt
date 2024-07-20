@@ -1,0 +1,65 @@
+*vim-piper.txt*   Plugin for interfacing with Piper text-to-speech system.
+
+Author: wolandark
+License: MIT
+Repository: https://github.com/wolandark/vim-piper
+
+==============================================================================
+CONTENTS                                             *vim-piper-contents*
+
+1. Introduction ................................ |vim-piper-introduction|
+2. Configuration ............................... |vim-piper-configuration|
+3. Functions ................................... |vim-piper-functions|
+4. Mappings .................................... |vim-piper-mappings|
+
+==============================================================================
+1. Introduction                                   *vim-piper-introduction*
+
+This plugin is a simple wrapper over the Piper text-to-speech system.
+Piper repository: https://github.com/rhasspy/piper
+
+==============================================================================
+2. Configuration                                  *vim-piper-configuration*
+
+To use this plugin, you can configure the following variables:
+
+- `g:piper_bin`: Path to the Piper binary. Default is
+  `/home/woland/tmp/piper/piper-bin/piper/piper`
+- `g:piper_voice`: Path to the Piper voice model. Default is
+  `/home/woland/tmp/piper/piper-voices/en/en_US/joe/medium/en_US-joe-medium.onnx`
+
+==============================================================================
+3. Functions                                      *vim-piper-functions*
+
+The following functions are provided by this plugin:
+
+- `PassVisualSelection()`: Utility function to get the visual selection.
+
+- `SpeakWord()`: Speak the word under the cursor.
+  Usage: `:call SpeakWord()`
+
+- `SpeakCurrentLine()`: Speak the current line.
+  Usage: `:call SpeakCurrentLine()`
+
+- `SpeakCurrentParagraph()`: Speak the current paragraph.
+  Usage: `:call SpeakCurrentParagraph()`
+
+- `SpeakVisualSelection()`: Speak the visual selection.
+  Usage: `:call SpeakVisualSelection()`
+
+- `SpeakCurrentFile()`: Speak the current file.
+  Usage: `:call SpeakCurrentFile()`
+
+==============================================================================
+4. Mappings                                       *vim-piper-mappings*
+
+The following mappings are defined by default:
+
+- `<Leader>tw`: Call `SpeakWord()`
+- `<Leader>tc`: Call `SpeakCurrentLine()`
+- `<Leader>tp`: Call `SpeakCurrentParagraph()`
+- `<Leader>tf`: Call `SpeakCurrentFile()`
+
+==============================================================================
+
+vim:tw=78:sw=2:ts=2:ft=help:norl:nowrap:
