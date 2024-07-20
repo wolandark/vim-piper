@@ -75,6 +75,8 @@ https://github.com/user-attachments/assets/b7a8db7a-a90f-4eb9-9108-8686d58cacbd
 https://github.com/user-attachments/assets/bad5ac11-7377-46a0-9e19-baab4b7ae8e6
 ### SpeakCurrentFile()
 https://github.com/user-attachments/assets/6afc5a8c-5188-479a-af56-80a949e319a0
+### SpeakVisualSelection()
+https://github.com/user-attachments/assets/657173b3-8bb1-46fc-bc9c-67b49b608bf9
 
 # License
 Same as Vim.
