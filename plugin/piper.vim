@@ -118,6 +118,7 @@ nnoremap <Leader>tw :call SpeakWord()<CR>
 nnoremap <Leader>tc :call SpeakCurrentLine()<CR>
 nnoremap <Leader>tp :call SpeakCurrentParagraph()<CR>
 nnoremap <Leader>tf :call SpeakCurrentFile()<CR>
+vnoremap <Leader>tv :call SpeakVisualSelection()<CR>
 
 
 
