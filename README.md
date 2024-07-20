@@ -6,7 +6,14 @@ A simple wrapper over the Piper text-to-speech system.
 
 Vim Piper is a Vim plugin that integrates the Piper text-to-speech system into Vim. It allows you to easily convert text within Vim to speech using Piper.
 
-## Installation
+# Getting piper
+On Arch Linux, do the following:
+```bash
+yay -S piper-tts-bin piper-voices-en-us #or your language of choice
+```
+You may also find piper and it's voices in the repositories of other distros, if not, simply grab the pre-compiled binaries of piper from [here](https://github.com/rhasspy/piper/releases/tag/2023.11.14-2), and manually download your desired voices from [here](https://huggingface.co/rhasspy/piper-voices/tree/main).<br> Once the download is finished, you can refer to the [Configuration](#configuration) section of this README to find out out to setup vim-piper.
+
+# Installation
 
 ### Using vim-plug
 
