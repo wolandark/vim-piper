@@ -31,11 +31,11 @@ let g:loaded_piper = 1
 "│Check vars│
 "└──────────┘
 if !exists('g:piper_bin')
-	let g:piper_bin = '/home/woland/tmp/piper/piper-bin/piper/piper'
+	let g:piper_bin = '/usr/bin/piper-tts'
 endif
 
 if !exists('g:piper_voice')
-	let g:piper_voice = '/home/woland/tmp/piper/piper-voices/en/en_US/joe/medium/en_US-joe-medium.onnx'
+	let g:piper_voice = '/usr/share/piper-voices/en/en_US/joe/medium/en_US-joe-medium.onnx'
 endif
 
 "┌────────────────────────────────────────────┐
