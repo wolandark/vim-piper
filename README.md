@@ -66,5 +66,17 @@ The following mappings are defined by default:
 - nnoremap <Leader>tp :call SpeakCurrentParagraph()<CR>
 - nnoremap <Leader>tf :call SpeakCurrentFile()<CR>
 
+# Demo
+### SpeakWord()
+https://github.com/user-attachments/assets/d34e58f5-a411-4f40-811a-c912afff0cae
+### SpeakCurrentLine()
+https://github.com/user-attachments/assets/b7a8db7a-a90f-4eb9-9108-8686d58cacbd
+### SpeakCurrentParagraph()
+https://github.com/user-attachments/assets/bad5ac11-7377-46a0-9e19-baab4b7ae8e6
+### SpeakCurrentFile()
+https://github.com/user-attachments/assets/6afc5a8c-5188-479a-af56-80a949e319a0
+
 # License
 Same as Vim.
+
+# Enjoy!
