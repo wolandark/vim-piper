@@ -47,7 +47,7 @@ function! PassVisualSelection()
 	let lines = getline(start[1], end[1])
 	let lines[-1] = lines[-1][ : end[2] - (&selection == 'inclusive' ? 1 : 2)]
 	let lines[0] = lines[0][start[2] - 1 : ]
-	let g:selection = join(lines, "\n")
+	let g:selection = join(lines)
 	return g:selection
 endfunction
 
@@ -90,6 +90,7 @@ endfunction
 "│Speak Visual Selection│
 "└──────────────────────┘
 function! SpeakVisualSelection()
+	let g:selection = ''
 	call PassVisualSelection()
 	" Execute the Piper command using the contents of the 'a' register
 	call system('echo "' . g:selection . '" | '. g:piper_bin .' --model '. g:piper_voice .' --output-raw | aplay -r 22050 -f S16_LE -t raw -')
@@ -118,4 +119,4 @@ nnoremap <Leader>tw :call SpeakWord()<CR>
 nnoremap <Leader>tc :call SpeakCurrentLine()<CR>
 nnoremap <Leader>tp :call SpeakCurrentParagraph()<CR>
 nnoremap <Leader>tf :call SpeakCurrentFile()<CR>
-vnoremap <Leader>tv :call SpeakVisualSelection()<CR>
+vnoremap <Leader>tv :<C-U>call SpeakVisualSelection()<CR>
