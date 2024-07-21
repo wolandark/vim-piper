@@ -59,6 +59,7 @@ The following mappings are defined by default:
 - `<Leader>tc`: Call `SpeakCurrentLine()`
 - `<Leader>tp`: Call `SpeakCurrentParagraph()`
 - `<Leader>tf`: Call `SpeakCurrentFile()`
+- `<Leader>tv`: Call `SpeakCurrentFile()`
 
 ==============================================================================
 
