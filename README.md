@@ -4,7 +4,8 @@ A simple wrapper over the Piper text-to-speech system.
 
 ## Introduction
 
-Vim Piper is a Vim plugin that integrates the Piper text-to-speech system into Vim. It allows you to easily convert text within Vim to speech using Piper.
+Vim Piper is a Vim plugin that integrates the Piper text-to-speech system into Vim. It allows you to easily convert text within Vim to speech using Piper.<br>
+If you don't care about natural sounding tts, you can use [vim-espeak](https://github.com/wolandark/vim-espeak).
 
 ## Dependency 
 This plugin depends on the following:
