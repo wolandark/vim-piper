@@ -65,13 +65,11 @@ endfunction
 "│Speak Current Line│
 "└──────────────────┘
 function! SpeakCurrentLine()
-	" Yank the current line to the 'a' register
 	normal! "ayy
-	" Execute the Piper command using the contents of the 'a' register
+	" split by newlines, and join into a single line (Seemingly unnessesary but is worth the trouble)
 	let line_text = join(split(@a, "\n"), " ")
 	let command = 'echo '. shellescape(line_text) .' | '. g:piper_bin .' --model '. g:piper_voice .' --output-raw | aplay -r 22050 -f S16_LE -t raw -'
 	call system(command)
-	" Redraw the screen to clean up
 	" redraw!
 endfunction
 
@@ -79,14 +77,11 @@ endfunction
 "│Speak Current Paragraph│
 "└───────────────────────┘
 function! SpeakCurrentParagraph()
-	" Yank the current paragraph to the 'a' register
 	normal! vap"ay
-	" Get the contents of register 'a', split by newlines, and join into a single line
+	" split by newlines, and join into a single line
 	let paragraph_text = join(split(@a, "\n"), " ")
-	" Execute the Piper command using the contents of the paragraph
     let command = 'echo ' . shellescape(paragraph_text) . ' | ' . g:piper_bin . ' --model ' . g:piper_voice . ' --output-raw | aplay -r 22050 -f S16_LE -t raw -'
 	call system(command)
-	" Redraw the screen to clean up
 	redraw!
 endfunction
 
@@ -96,6 +91,7 @@ endfunction
 function! SpeakVisualSelection()
 	let g:selection = ''
 	call PassVisualSelection()
+	" shellescape to avoid errors
     let escaped_selection = shellescape(g:selection)
     let command = 'echo ' . escaped_selection . ' | ' . g:piper_bin . ' --model ' . g:piper_voice . ' --output-raw | aplay -r 22050 -f S16_LE -t raw -'
     call system(command)
@@ -106,15 +102,12 @@ endfunction
 "│Speak Current File│
 "└──────────────────┘
 function! SpeakCurrentFile()
-	" Yank the current file to the 'a' register
 	execute "%y a"
-	" Get the contents of register 'a', split by newlines, and join into a single line
+	" split by newlines, and join into a single line
 	let paragraph_text = join(split(@a, "\n"), " ")
-	" Execute the Piper command using the contents of the paragraph
 	let escaped_file = shellescape(paragraph_text) 
 	let command = 'echo ' . escaped_file . ' | '. g:piper_bin .' --model '. g:piper_voice .' --output-raw | aplay -r 22050 -f S16_LE -t raw -'
 	call system(command)
-	" Redraw the screen to clean up
 	redraw!
 endfunction
 
