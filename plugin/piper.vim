@@ -92,7 +92,7 @@ endfunction
 function! SpeakVisualSelection()
 	let g:selection = ''
 	call PassVisualSelection()
-	" Execute the Piper command using the contents of the 'a' register
+    let escaped_selection = shellescape(g:selection)
 	call system('echo "' . g:selection . '" | '. g:piper_bin .' --model '. g:piper_voice .' --output-raw | aplay -r 22050 -f S16_LE -t raw -')
 	" Redraw the screen to clean up
 	redraw!
