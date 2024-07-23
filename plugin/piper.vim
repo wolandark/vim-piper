@@ -58,6 +58,7 @@ function! SpeakWord()
 	let word_under_cursor = expand('<cword>')
 	let command = 'echo '. word_under_cursor .' | '. g:piper_bin .' --model '. g:piper_voice .' --output-raw | aplay -r 22050 -f S16_LE -t raw -'
 	call system(command)
+	set lazyredraw
 	redraw!
 endfunction
 
@@ -70,7 +71,8 @@ function! SpeakCurrentLine()
 	let line_text = join(split(@a, "\n"), " ")
 	let command = 'echo '. shellescape(line_text) .' | '. g:piper_bin .' --model '. g:piper_voice .' --output-raw | aplay -r 22050 -f S16_LE -t raw -'
 	call system(command)
-	" redraw!
+	set lazyredraw
+	redraw!
 endfunction
 
 "┌───────────────────────┐
@@ -82,6 +84,7 @@ function! SpeakCurrentParagraph()
 	let paragraph_text = join(split(@a, "\n"), " ")
     let command = 'echo ' . shellescape(paragraph_text) . ' | ' . g:piper_bin . ' --model ' . g:piper_voice . ' --output-raw | aplay -r 22050 -f S16_LE -t raw -'
 	call system(command)
+	set lazyredraw
 	redraw!
 endfunction
 
@@ -95,6 +98,7 @@ function! SpeakVisualSelection()
     let escaped_selection = shellescape(g:selection)
     let command = 'echo ' . escaped_selection . ' | ' . g:piper_bin . ' --model ' . g:piper_voice . ' --output-raw | aplay -r 22050 -f S16_LE -t raw -'
     call system(command)
+	set lazyredraw
 	redraw!
 endfunction
 
@@ -108,6 +112,7 @@ function! SpeakCurrentFile()
 	let escaped_file = shellescape(paragraph_text) 
 	let command = 'echo ' . escaped_file . ' | '. g:piper_bin .' --model '. g:piper_voice .' --output-raw | aplay -r 22050 -f S16_LE -t raw -'
 	call system(command)
+	set lazyredraw
 	redraw!
 endfunction
 
