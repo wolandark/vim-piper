@@ -56,7 +56,8 @@ endfunction
 "└───────────────────────────┘
 function! SpeakWord()
 	let word_under_cursor = expand('<cword>')
-	call system('echo "'. word_under_cursor .'" | '. g:piper_bin .' --model '. g:piper_voice .' --output-raw | aplay -r 22050 -f S16_LE -t raw -')
+	let command = 'echo '. word_under_cursor .' | '. g:piper_bin .' --model '. g:piper_voice .' --output-raw | aplay -r 22050 -f S16_LE -t raw -'
+	call system(command)
 	redraw!
 endfunction
 
@@ -67,9 +68,11 @@ function! SpeakCurrentLine()
 	" Yank the current line to the 'a' register
 	normal! "ayy
 	" Execute the Piper command using the contents of the 'a' register
-	call system('echo "' . @a . '" | '. g:piper_bin .' --model '. g:piper_voice .' --output-raw | aplay -r 22050 -f S16_LE -t raw -')
+	let line_text = join(split(@a, "\n"), " ")
+	let command = 'echo '. shellescape(line_text) .' | '. g:piper_bin .' --model '. g:piper_voice .' --output-raw | aplay -r 22050 -f S16_LE -t raw -'
+	call system(command)
 	" Redraw the screen to clean up
-	redraw!
+	" redraw!
 endfunction
 
 "┌───────────────────────┐
@@ -81,7 +84,8 @@ function! SpeakCurrentParagraph()
 	" Get the contents of register 'a', split by newlines, and join into a single line
 	let paragraph_text = join(split(@a, "\n"), " ")
 	" Execute the Piper command using the contents of the paragraph
-	call system('echo ' . shellescape(paragraph_text) . ' | '. g:piper_bin .' --model '. g:piper_voice .' --output-raw | aplay -r 22050 -f S16_LE -t raw -')
+    let command = 'echo ' . shellescape(paragraph_text) . ' | ' . g:piper_bin . ' --model ' . g:piper_voice . ' --output-raw | aplay -r 22050 -f S16_LE -t raw -'
+	call system(command)
 	" Redraw the screen to clean up
 	redraw!
 endfunction
@@ -93,8 +97,8 @@ function! SpeakVisualSelection()
 	let g:selection = ''
 	call PassVisualSelection()
     let escaped_selection = shellescape(g:selection)
-	call system('echo "' . g:selection . '" | '. g:piper_bin .' --model '. g:piper_voice .' --output-raw | aplay -r 22050 -f S16_LE -t raw -')
-	" Redraw the screen to clean up
+    let command = 'echo ' . escaped_selection . ' | ' . g:piper_bin . ' --model ' . g:piper_voice . ' --output-raw | aplay -r 22050 -f S16_LE -t raw -'
+    call system(command)
 	redraw!
 endfunction
 
@@ -107,7 +111,9 @@ function! SpeakCurrentFile()
 	" Get the contents of register 'a', split by newlines, and join into a single line
 	let paragraph_text = join(split(@a, "\n"), " ")
 	" Execute the Piper command using the contents of the paragraph
-	call system('echo ' . shellescape(paragraph_text) . ' | '. g:piper_bin .' --model '. g:piper_voice .' --output-raw | aplay -r 22050 -f S16_LE -t raw -')
+	let escaped_file = shellescape(paragraph_text) 
+	let command = 'echo ' . escaped_file . ' | '. g:piper_bin .' --model '. g:piper_voice .' --output-raw | aplay -r 22050 -f S16_LE -t raw -'
+	call system(command)
 	" Redraw the screen to clean up
 	redraw!
 endfunction
