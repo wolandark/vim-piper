@@ -18,7 +18,7 @@
 " piper repository: https://github.com/rhasspy/piper
 " plugin home: https://github.com/wolandark/vim-piper
 "
-"
+
 "┌─────────┐
 "│Load Once│
 "└─────────┘
@@ -67,7 +67,7 @@ endfunction
 "└──────────────────┘
 function! SpeakCurrentLine()
 	normal! "ayy
-	" split by newlines, and join into a single line (Seemingly unnessesary but is worth the trouble)
+	" split by newlines, and join into a single line (Seemingly unnecessary but is worth the trouble)
 	let line_text = join(split(@a, "\n"), " ")
 	let command = 'echo '. shellescape(line_text) .' | '. g:piper_bin .' --model '. g:piper_voice .' --output-raw | aplay -r 22050 -f S16_LE -t raw -'
 	call system(command)
