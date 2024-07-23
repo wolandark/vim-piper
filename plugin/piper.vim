@@ -69,7 +69,8 @@ function! SpeakCurrentLine()
 	normal! "ayy
 	" split by newlines, and join into a single line (Seemingly unnecessary but is worth the trouble)
 	let line_text = join(split(@a, "\n"), " ")
-	let command = 'echo '. shellescape(line_text) .' | '. g:piper_bin .' --model '. g:piper_voice .' --output-raw | aplay -r 22050 -f S16_LE -t raw -'
+	let escaped_line = shellescape(line_text)
+	let command = 'echo '. escaped_line .' | '. g:piper_bin .' --model '. g:piper_voice .' --output-raw | aplay -r 22050 -f S16_LE -t raw -'
 	call system(command)
 	set lazyredraw
 	redraw!
@@ -82,7 +83,8 @@ function! SpeakCurrentParagraph()
 	normal! vap"ay
 	" split by newlines, and join into a single line
 	let paragraph_text = join(split(@a, "\n"), " ")
-    let command = 'echo ' . shellescape(paragraph_text) . ' | ' . g:piper_bin . ' --model ' . g:piper_voice . ' --output-raw | aplay -r 22050 -f S16_LE -t raw -'
+	let escaped_paragraph = shellescape(paragraph_text)
+    let command = 'echo ' . escaped_paragraph . ' | ' . g:piper_bin . ' --model ' . g:piper_voice . ' --output-raw | aplay -r 22050 -f S16_LE -t raw -'
 	call system(command)
 	set lazyredraw
 	redraw!
@@ -94,7 +96,6 @@ endfunction
 function! SpeakVisualSelection()
 	let g:selection = ''
 	call PassVisualSelection()
-	" shellescape to avoid errors
     let escaped_selection = shellescape(g:selection)
     let command = 'echo ' . escaped_selection . ' | ' . g:piper_bin . ' --model ' . g:piper_voice . ' --output-raw | aplay -r 22050 -f S16_LE -t raw -'
     call system(command)
@@ -108,8 +109,8 @@ endfunction
 function! SpeakCurrentFile()
 	execute "%y a"
 	" split by newlines, and join into a single line
-	let paragraph_text = join(split(@a, "\n"), " ")
-	let escaped_file = shellescape(paragraph_text) 
+	let file_text = join(split(@a, "\n"), " ")
+	let escaped_file = shellescape(file_text) 
 	let command = 'echo ' . escaped_file . ' | '. g:piper_bin .' --model '. g:piper_voice .' --output-raw | aplay -r 22050 -f S16_LE -t raw -'
 	call system(command)
 	set lazyredraw
