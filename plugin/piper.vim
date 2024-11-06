@@ -118,11 +118,20 @@ function! SpeakCurrentFile()
 	redraw!
 endfunction
 
+" ┌────────┐
+" │Commands│
+" └────────┘
+command! SpeakWord :call SpeakWord()
+command! SpeakCurrentLine :call SpeakCurrentLine()
+command! SpeakCurrentParagraph :call SpeakCurrentParagraph()
+command! SpeakCurrentFile :call SpeakCurrentFile()
+
 "┌─────────────────┐
 "│Map the functions│
 "└─────────────────┘
-nnoremap <Leader>tw :call SpeakWord()<CR>
-nnoremap <Leader>tc :call SpeakCurrentLine()<CR>
-nnoremap <Leader>tp :call SpeakCurrentParagraph()<CR>
-nnoremap <Leader>tf :call SpeakCurrentFile()<CR>
+nnoremap <Leader>tw :SpeakWord()<CR>
+nnoremap <Leader>tc :SpeakCurrentLine()<CR>
+nnoremap <Leader>tp :SpeakCurrentParagraph()<CR>
+nnoremap <Leader>tf :SpeakCurrentFile()<CR>
 vnoremap <Leader>tv :<C-U>call SpeakVisualSelection()<CR>
+
