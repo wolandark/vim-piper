@@ -129,9 +129,9 @@ command! SpeakCurrentFile :call SpeakCurrentFile()
 "┌─────────────────┐
 "│Map the functions│
 "└─────────────────┘
-nnoremap <Leader>tw :SpeakWord()<CR>
-nnoremap <Leader>tc :SpeakCurrentLine()<CR>
-nnoremap <Leader>tp :SpeakCurrentParagraph()<CR>
-nnoremap <Leader>tf :SpeakCurrentFile()<CR>
+nnoremap <Leader>tw :SpeakWord<CR>
+nnoremap <Leader>tc :SpeakCurrentLine<CR>
+nnoremap <Leader>tp :SpeakCurrentParagraph<CR>
+nnoremap <Leader>tf :SpeakCurrentFile<CR>
 vnoremap <Leader>tv :<C-U>call SpeakVisualSelection()<CR>
 
